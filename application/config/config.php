@@ -23,7 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+<<<<<<< HEAD
 $config['base_url'] = 'http://fire.autechnet.local/'; // SEE ENVIROMENT CONFIG FILES
+=======
+$config['base_url'] = ''; // SEE ENVIROMENT CONFIG FILES
+>>>>>>> refs/remotes/JasonBaier/master
 
 /*
 |--------------------------------------------------------------------------
