@@ -149,6 +149,24 @@
     </footer>
 
     <?php // Javascript files ?>
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js<?php echo $separator; ?>v=<?php echo $this->settings->site_version; ?>" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>chosen.jquery.js<?php echo $separator; ?>v=<?php echo $this->settings->site_version; ?>" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>docsupport/prism.js<?php echo $separator; ?>v=<?php echo $this->settings->site_version; ?>" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>	
+  
+    
     <?php if (isset($js_files) && is_array($js_files)) : ?>
         <?php foreach ($js_files as $js) : ?>
             <?php if ( ! is_null($js)) : ?>
