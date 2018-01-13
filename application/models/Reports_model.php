@@ -32,7 +32,7 @@ class Reports_model extends CI_Model {
      * @param  string $dir
      * @return array|boolean
      */
-    function get_all($limit = 0, $offset = 0, $filters = array(), $sort = 'id', $dir = 'asc')
+    /* function get_all($limit = 0, $offset = 0, $filters = array(), $sort = 'id', $dir = 'asc')
     {
         $sql = "
             SELECT SQL_CALC_FOUND_ROWS *
@@ -72,7 +72,7 @@ class Reports_model extends CI_Model {
         $results['total'] = $query->row()->total;
 
         return $results;
-    }
+    } */ 
 	
     /**
      * Get list of non-deleted categories / vendors
@@ -84,7 +84,7 @@ class Reports_model extends CI_Model {
      * @param  string $dir
      * @return array|boolean
      */
-    function get_catvenall($limit = 0, $offset = 0, $filters = array(), $sort = 'categories', $dir = 'ASC')
+    /* function get_catvenall($limit = 0, $offset = 0, $filters = array(), $sort = 'categories', $dir = 'ASC')
     {
         $sql = "
             SELECT SQL_CALC_FOUND_ROWS *
@@ -124,7 +124,7 @@ class Reports_model extends CI_Model {
         $results['total'] = $query->row()->total;
 
         return $results;
-    }
+    } */
 
 
     /**

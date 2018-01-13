@@ -63,9 +63,9 @@ foreach($fiscal_list as $row) { ?>
                     <a href="<?php echo current_url(); ?>?sort=assigned_user&dir=<?php echo (($dir == 'asc' ) ? 'desc' : 'asc'); ?>&limit=<?php echo $limit; ?>&offset=<?php echo $offset; ?><?php echo $filter; ?>"><?php echo lang('reports col who'); ?></a>
                     <?php if ($sort == 'assigned_user') : ?><span class="glyphicon glyphicon-arrow-<?php echo (($dir == 'asc') ? 'up' : 'down'); ?>"></span><?php endif; ?>
                 </td>
-                <!-- <td class="pull-right">
+                 <td class="pull-right">
                     <?php echo lang('admin col actions'); ?>
-                </td> -->
+                </td> 
             </tr>
 
             <?php // search filters ?>

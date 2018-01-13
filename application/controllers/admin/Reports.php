@@ -138,7 +138,7 @@ class Reports extends Admin_Controller {
                     $filter .= "&fiscal_yr=" . $this->input->post('fiscal_yr', TRUE);
                 }
 				
-                // redirect using new filter(s)
+                // redirect ufsing new filter(s)
                 redirect(THIS_URL . "?sort={$sort}&dir={$dir}&limit={$limit}&offset={$offset}{$filter}");
             }
         }
@@ -150,7 +150,7 @@ class Reports extends Admin_Controller {
         $this->pagination->initialize(array(
             'base_url'   => THIS_URL . "?sort={$sort}&dir={$dir}&limit={$limit}{$filter}",
             'total_rows' => $reports['total'],
-            'per_page'   => 20000
+            'per_page'   => $limit
         ));
 
         // setup page header data
@@ -189,7 +189,7 @@ class Reports extends Admin_Controller {
 
     /**
      * Add new record
-     */
+     */ /* 
     function add()
     {
         // validators
@@ -255,14 +255,14 @@ class Reports extends Admin_Controller {
         // load views
         $data['content'] = $this->load->view('admin/finance/form', $content_data, TRUE);
         $this->load->view($this->template, $data);
-    }
+    } */
 
 
     /**
      * Edit existing user
      *
      * @param  int $id
-     */
+     *
     function edit($id = NULL)
     {
         // make sure we have a numeric id
@@ -356,7 +356,7 @@ class Reports extends Admin_Controller {
      * Delete a user
      *
      * @param  int $id
-     */
+     *
     function delete($id = NULL)
     {
         // make sure we have a numeric id
@@ -397,7 +397,7 @@ class Reports extends Admin_Controller {
      * Delete a catven
      *
      * @param  int $id
-     */
+     *
     function delete_catven($id = NULL)
     {
         // make sure we have a numeric id
@@ -432,11 +432,11 @@ class Reports extends Admin_Controller {
 
         // return to list and display message
         redirect($this->_redirect_url);
-    }
+    } */ 
 
     /**
      * Export list to CSV
-     */
+     *
     function export()
     {
         // get parameters
@@ -493,11 +493,11 @@ class Reports extends Admin_Controller {
         }
 
         exit;
-    }
+    } */ 
 	
     /**
      * List and display categories and vendors. 
-     */
+     *
     function manage()
     {
 		
@@ -559,7 +559,7 @@ class Reports extends Admin_Controller {
         }
 
         // get list
-        $reports = $this->reports_model->get_catvenall($limit, $offset, $filters, $sort, $dir);
+        $reports = $this->finance_model->get_catvenall($limit, $offset, $filters, $sort, $dir);
 
         // build pagination
         $this->pagination->initialize(array(
@@ -605,7 +605,7 @@ class Reports extends Admin_Controller {
      * Edit existing categories/vendors
      *
      * @param  int $id
-     */
+     *
     function manage_form($id = NULL)
     {
         // make sure we have a numeric id
@@ -662,11 +662,11 @@ class Reports extends Admin_Controller {
         $data['content'] = $this->load->view('admin/finance/form_manage', $content_data, TRUE);
         $this->load->helper('url');
 		$this->load->view($this->template, $data);
-    }
+    } */
 
     /**
      * Add new vendor / supplier / category
-     */
+     *
     function catven()
     {
         // validators
@@ -709,7 +709,7 @@ class Reports extends Admin_Controller {
         // load views
         $data['content'] = $this->load->view('admin/finance/form_manage', $content_data, TRUE);
         $this->load->view($this->template, $data);
-    }
+    } */
     /**************************************************************************************
      * PRIVATE VALIDATION CALLBACK FUNCTIONS
      **************************************************************************************/
@@ -722,7 +722,7 @@ class Reports extends Admin_Controller {
      * @param  string|null $current
      * @return int|boolean
      */
-    function _check_email($email, $current)
+    /* function _check_email($email, $current)
     {
         if (trim($email) != trim($current) && $this->reports_model->email_exists($email))
         {
@@ -760,6 +760,6 @@ class Reports extends Admin_Controller {
 
     $this->load->view('itemsView',$data);
 
- } 
+ } */ 
 
 }
