@@ -18,8 +18,9 @@ class Reports extends Admin_Controller {
         // load the language files
         $this->lang->load('reports');
 
-        // load the finance model
+        // load required models
         $this->load->model('reports_model');
+        $this->load->model('finance_model');
 		// $this->load->model('users_model');
 
         // set constants
@@ -143,7 +144,7 @@ class Reports extends Admin_Controller {
         }
 
         // get list
-        $reports = $this->reports_model->get_all($limit, $offset, $filters, $sort, $dir);
+        $reports = $this->finance_model->get_all($limit, $offset, $filters, $sort, $dir);
 
         // build pagination
         $this->pagination->initialize(array(
@@ -161,11 +162,11 @@ class Reports extends Admin_Controller {
 
         // set content data
         $content_data = array(
-			'user_list'					=> $this->reports_model->get_userlist(),
+			'user_list'					=> $this->finance_model->get_userlist(),
             'base_site' => THIS_URL_BASE,
-			'category_name'					=> $this->reports_model->get_categories(),
-			'category_list'					=> $this->reports_model->get_categories_list(),
-			'username_list'					=> $this->reports_model->get_userslist(),
+			'category_name'					=> $this->finance_model->get_categories(),
+			'category_list'					=> $this->finance_model->get_categories_list(),
+			'username_list'					=> $this->finance_model->get_userslist(),
 			'fiscal_list'					=> $this->reports_model->get_fiscallist_new(),
             'this_url'   => THIS_URL,
             'finances'      => $reports['results'],
