@@ -13,7 +13,6 @@
 		echo '<option value="">None</option>';
 
 foreach($fiscal_list as $row) { ?>
-
 <option <?php if($this->input->get('fiscal_yr')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>"><?=$row->categories?></option>
 						<?php }} ?>	
 
@@ -64,9 +63,9 @@ foreach($fiscal_list as $row) { ?>
                     <a href="<?php echo current_url(); ?>?sort=assigned_user&dir=<?php echo (($dir == 'asc' ) ? 'desc' : 'asc'); ?>&limit=<?php echo $limit; ?>&offset=<?php echo $offset; ?><?php echo $filter; ?>"><?php echo lang('reports col who'); ?></a>
                     <?php if ($sort == 'assigned_user') : ?><span class="glyphicon glyphicon-arrow-<?php echo (($dir == 'asc') ? 'up' : 'down'); ?>"></span><?php endif; ?>
                 </td>
-                <td class="pull-right">
+                <!-- <td class="pull-right">
                     <?php echo lang('admin col actions'); ?>
-                </td>
+                </td> -->
             </tr>
 
             <?php // search filters ?>
@@ -148,7 +147,7 @@ foreach($username_list as $row) { ?>
                         <td<?php echo (($sort == 'description') ? ' class="sorted"' : ''); ?>>
                             <?php echo $finance['description']; ?>
                         </td>
-                        <td<?php echo (($sort == 'value') ? ' class="sorted"' : ''); ?>>
+                        <td<?php echo (($sort == 'value') ? ' class="sorted"' : ''); ?> >
                             
 							<?php if ($finance['value'] > 0): ?>
 
@@ -167,12 +166,12 @@ foreach($username_list as $row) { ?>
 							echo $user_list[$x];
 						?>
                         </td>
-                        <td>
-                            <div class="text-right">
+                         <td>
+                        <!--    <div class="text-right">
                                 <div class="btn-group">
                                     <a href="<?php echo $base_site; ?>admin/finance/edit/<?php echo $finance['id']; ?>" class="btn btn-warning" title="<?php echo lang('admin button edit'); ?>"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </div>
-                            </div>
+                            </div> -->
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -184,6 +183,14 @@ foreach($username_list as $row) { ?>
                 </tr>
             <?php endif; ?>
 
+            <?php if( $this->input->get('assigned_user') != "" || $this->input->get('category') != "" || $this->input->get('fiscal_yr')  != "" ) : ?>
+            <tr>
+                    <td colspan="7">
+                        <?php echo lang('core error no_results'); ?>
+                    </td>
+            </tr>
+            <?php endif; ?>
+            
         </tbody>
     </table>
 
@@ -211,7 +218,7 @@ foreach($username_list as $row) { ?>
                 <?php if ($total) : ?>
                     <a href="<?php echo $this_url; ?>/export?sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?><?php echo $filter; ?>" class="btn btn-success tooltips" data-toggle="tooltip" title="<?php echo lang('admin tooltip csv_export'); ?>"><span class="glyphicon glyphicon-export"></span> <?php echo lang('admin button csv_export'); ?></a>
                 <?php endif; ?>
-            </div>
+            </div>     
         </div>
     </div>
 
