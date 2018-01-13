@@ -105,15 +105,16 @@ foreach($category_list as $row) { ?>
 					<th></th>
 					<th>
 					<?php if(isset($username_list)) { ?>
-					<select name="assigned_user" id="username-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Category...">
-<?php 
+					<select name="assigned_user" id="username-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Name...">
+                    <?php 
 		
 		echo '<option value="">None</option>';
 
 foreach($username_list as $row) { ?>
-<option value="<?=$row->id?>"><?=$row->id?> - <?=ucfirst($row->username)?></option>
+
+<option <?php if($this->input->get('assigned_user')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>"><?=ucfirst($row->username)?></option>
 						<?php }} ?>
-</select>		
+</select>	
 					</th>
 					
                     <th colspan="3">
