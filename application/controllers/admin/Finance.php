@@ -141,9 +141,9 @@ class Finance extends Admin_Controller {
         ));
 
         // setup page header data
-		$this
-			->add_js_theme( "users_i18n.js", TRUE )
-			->set_title( lang('finance title finance_list') );
+		$this->add_js_theme(array("users_i18n.js", "bootstrap-select.js"));
+        $this->add_css_theme("bootstrap-select.min.css");
+        $this->set_title( lang('finance title finance_list') );
 
         $data = $this->includes;
 
@@ -170,6 +170,7 @@ class Finance extends Admin_Controller {
         // load views
         $data['content'] = $this->load->view('admin/finance/list', $content_data, TRUE);
         $this->load->view($this->template, $data);
+
     }
 
 
@@ -556,9 +557,9 @@ class Finance extends Admin_Controller {
         ));
 
         // setup page header data
-		$this
-			->add_js_theme( "users_i18n.js", TRUE )
-			->set_title( lang('finance title manage_list') );
+        $this->add_js_theme(array("users_i18n.js", "bootstrap-select.js"));
+        $this->add_css_theme("bootstrap-select.min.css");
+		$this->set_title( lang('finance title manage_list') );
 
         $data = $this->includes;
 

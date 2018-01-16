@@ -17,6 +17,9 @@
             </div>
         </div>
     </div>
+    
+                    <?php echo form_open("{$this_url}?sort={$sort}&dir={$dir}&limit={$limit}&offset=0{$filter}", array('role'=>'form', 'id'=>"filters")); ?>
+
 
     <table class="table table-striped table-hover-warning">
         <thead>
@@ -54,7 +57,6 @@
 
             <?php // search filters ?>
             <tr>
-                <?php echo form_open("{$this_url}?sort={$sort}&dir={$dir}&limit={$limit}&offset=0{$filter}", array('role'=>'form', 'id'=>"filters")); ?>
                     <th>
                     </th>
                     <th<?php echo ((isset($filters['title'])) ? ' class="has-success"' : ''); ?>>
@@ -63,16 +65,18 @@
                     <th<?php echo ((isset($filters['category'])) ? ' class="has-success"' : ''); ?>>
 						
 						
-						
+
+                        
+                    
 						<?php if(isset($category_list)) { ?>
-					<select name="category" id="category-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Category...">
+					<select name="category" id="category-list-dropdown" class="form-control selectpicker" data-live-search="true" data-placeholder="Choose a Category...">
 <?php 
 		
-		echo '<option value="">None</option>';
+		echo '<option value="" data-tokens="">None</option>';
 
 foreach($category_list as $row) { ?>
 
-<option <?php if($this->input->get('category')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>"><?=$row->id?> - <?=$row->categories?></option>
+<option <?php if($this->input->get('category')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>" data-tokens="<?=$row->categories?>"><?=$row->categories?></option>
 						<?php }} ?>
 </select>
 
@@ -89,19 +93,19 @@ foreach($category_list as $row) { ?>
 					<th></th>
 					<th>
                     <?php if(isset($username_list)) { ?>
-					<select name="assigned_user" id="username-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Name...">
+					<select name="assigned_user" id="username-list-dropdown" class="form-control selectpicker" data-live-search="true"  data-placeholder="Choose a Name...">
                     <?php 
 		
-		echo '<option value="">None</option>';
+		echo '<option value="" data-tokens="None">None</option>';
 
 foreach($username_list as $row) { ?>
 
-<option <?php if($this->input->get('assigned_user')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>"><?=ucfirst($row->username)?></option>
+<option <?php if($this->input->get('assigned_user')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>" data-tokens="<?=ucfirst($row->username)?>"><?=ucfirst($row->username)?></option>
 						<?php }} ?>
 </select>
 					</th>
 					
-                    <th colspan="4">
+                    <th>
                         <div class="text-right">
 						
                             <button type="submit" name="submit" value="<?php echo lang('core button filter'); ?>" class="btn btn-success tooltips" data-toggle="tooltip" title="<?php echo lang('admin tooltip filter'); ?>"><span class="glyphicon glyphicon-filter"></span> <?php echo lang('core button filter'); ?></button>
@@ -109,7 +113,7 @@ foreach($username_list as $row) { ?>
                     </th>
 					
 					
-                <?php echo form_close(); ?>
+                
             </tr>
 
         </thead>
@@ -173,7 +177,8 @@ foreach($username_list as $row) { ?>
 
         </tbody>
     </table>
-
+    <?php echo form_close(); ?>
+    
     <?php // list tools ?>
     <div class="panel-footer">
         <div class="row">

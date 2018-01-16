@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-
+                <?php echo form_open("{$this_url}/manage?sort={$sort}&dir={$dir}&limit={$limit}&offset=0{$filter}", array('role'=>'form', 'id'=>"filters")); ?>
     <table class="table table-striped table-hover-warning">
         <thead>
 
@@ -33,7 +33,7 @@
 
             <?php // search filters ?>
             <tr>
-                <?php echo form_open("{$this_url}/manage?sort={$sort}&dir={$dir}&limit={$limit}&offset=0{$filter}", array('role'=>'form', 'id'=>"filters")); ?>
+
                     <th>
                     </th>
                     <th<?php echo ((isset($filters['categories'])) ? ' class="has-success"' : ''); ?>>
@@ -41,11 +41,11 @@
                     </th>
                     <th<?php echo ((isset($filters['category'])) ? ' class="has-success"' : ''); ?>>
 																		
-<select name="locked" id="category-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Category...">
-<option value="">None</option>
-<option value="1">1 - Categories</option>
-<option value="2">2 - Vendors / Suppliers</option>
-<option value="3">3 - Financial Year</option>
+<select name="locked" id="category-list-dropdown" class="form-control selectpicker" data-live-search="true" data-placeholder="Choose a Category...">
+<option value="" data-tokens="">None</option>
+<option value="1" data-tokens="1">1 - Categories</option>
+<option value="2" data-tokens="2">2 - Vendors / Suppliers</option>
+<option value="3" data-tokens="3">3 - Financial Year</option>
 </select>
 						<?php 						
 						// echo form_dropdown('category', $category_list, $this->input->get('category'),'id="category-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Category..."');
@@ -63,7 +63,6 @@
                     </th>
 				
 					
-                <?php echo form_close(); ?>
             </tr>
 
         </thead>
@@ -122,7 +121,10 @@
 
         </tbody>
     </table>
+    
+                    <?php echo form_close(); ?>
 
+                    
     <?php // list tools ?>
     <div class="panel-footer">
         <div class="row">
