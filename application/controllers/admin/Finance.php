@@ -141,7 +141,7 @@ class Finance extends Admin_Controller {
         ));
 
         // setup page header data
-		$this->add_js_theme(array("users_i18n.js", "bootstrap-select.js"));
+		$this->add_js_theme(array("finance_i18n.js", "bootstrap-select.js"));
         $this->add_css_theme("bootstrap-select.min.css");
         $this->set_title( lang('finance title finance_list') );
 
@@ -224,6 +224,9 @@ class Finance extends Admin_Controller {
 
         // setup page header data
         $this->set_title( lang('finance title finance_add') );
+        
+        $this->add_js_theme(array("users_i18n.js", "bootstrap-select.js"));
+        $this->add_css_theme("bootstrap-select.min.css");
 
         $data = $this->includes;
 	
@@ -313,6 +316,8 @@ class Finance extends Admin_Controller {
 		$finance = $this->finance_model->get_record($id);
         // setup page header data
         $this->set_title( lang('finance title finance_edit') );
+        $this->add_js_theme(array("users_i18n.js", "bootstrap-select.js"));
+        $this->add_css_theme("bootstrap-select.min.css");
 
         $data = $this->includes;
 		
@@ -360,21 +365,21 @@ class Finance extends Admin_Controller {
 
                 if ($delete)
                 {
-                    $this->session->set_flashdata('message', sprintf(lang('users msg delete_user'), $finance['category'] . " " . $finance['description']));
+                    $this->session->set_flashdata('message', sprintf(lang('finance msg delete_record'), $finance['category'] . " - " . $finance['description']));
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', sprintf(lang('users error delete_user'), $finance['category'] . " " . $finance['description']));
+                    $this->session->set_flashdata('error', sprintf(lang('finance error delete_user'), $finance['category'] . " - " . $finance['description']));
                 }
             }
             else
             {
-                $this->session->set_flashdata('error', lang('users error user_not_exist'));
+                $this->session->set_flashdata('error', lang('finance error finance_not_exist'));
             }
         }
         else
         {
-            $this->session->set_flashdata('error', lang('users error user_id_required'));
+            $this->session->set_flashdata('error', lang('finance error finance_id_required'));
         }
 
         // return to list and display message
@@ -401,21 +406,21 @@ class Finance extends Admin_Controller {
 
                 if ($delete)
                 {
-                    $this->session->set_flashdata('message', sprintf(lang('users msg delete_user'), $finance['category'] . " " . $finance['description']));
+                    $this->session->set_flashdata('message', sprintf(lang('finance msg delete_category'), $finance['category'] . " " . $finance['description']));
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', sprintf(lang('users error delete_user'), $finance['category'] . " " . $finance['description']));
+                    $this->session->set_flashdata('error', sprintf(lang('finance error delete_category'), $finance['category'] . " " . $finance['description']));
                 }
             }
             else
             {
-                $this->session->set_flashdata('error', lang('users error user_not_exist'));
+                $this->session->set_flashdata('error', lang('finance error user_not_exist'));
             }
         }
         else
         {
-            $this->session->set_flashdata('error', lang('users error user_id_required'));
+            $this->session->set_flashdata('error', lang('finance error user_id_required'));
         }
 
         // return to list and display message
@@ -557,7 +562,7 @@ class Finance extends Admin_Controller {
         ));
 
         // setup page header data
-        $this->add_js_theme(array("users_i18n.js", "bootstrap-select.js"));
+        $this->add_js_theme(array("finance_i18n.js", "bootstrap-select.js"));
         $this->add_css_theme("bootstrap-select.min.css");
 		$this->set_title( lang('finance title manage_list') );
 

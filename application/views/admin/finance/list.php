@@ -152,7 +152,11 @@ foreach($username_list as $row) { ?>
                         <td<?php echo (($sort == 'assigned_user') ? ' class="sorted"' : ''); ?>>
 						<?php 
 							$x = $finance['assigned_user'];
-							echo $user_list[$x];
+							if (isset($user_list[$x])==1) {
+                                echo $user_list[$x];
+                            } else {
+                                echo "No User Assigned"; 
+                            }
 						?>
                         </td>
                         <td>
@@ -220,12 +224,11 @@ foreach($username_list as $row) { ?>
                         <h4 id="modal-label-<?php echo $finance['id']; ?>"><?php echo lang('finance title finance_delete');  ?></h4>
                     </div>
                     <div class="modal-body">
-                        <p><?php echo sprintf(lang('finance msg delete_confirm'), $finance['category'] . " " . $finance['description']); ?></p>
+                        <p><?php echo sprintf(lang('finance msg delete_confirm'), $category_name[$finance['category']] . " - " . $finance['description']); ?></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo lang('core button cancel'); ?></button>
-						<button type="button" class="btn btn-primary btn-delete-record" data-target="<?php echo $finance['id']; ?>"><?php echo lang('admin button delete'); ?></button>
-                        <a href="#modal-<?php echo $finance['id']; ?>" data-toggle="modal" class="btn btn-danger btn-delete-record red" title="<?php echo lang('admin button delete'); ?>">Delete</a>
+						<button type="button" class="btn btn-primary btn-delete-record" data-id="<?php echo $finance['id']; ?>"><?php echo lang('admin button delete'); ?></button>
                     </div>
                 </div>
             </div>

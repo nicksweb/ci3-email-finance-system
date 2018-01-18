@@ -87,6 +87,8 @@ $lang['finance msg email_password_reset']       = "<p>Your password at %s has be
                                                  Once logged in, be sure to change your password to something you can
                                                  remember.</p>";
 $lang['finance msg email_password_reset_title'] = "Password Reset for %s";
+$lang['finance msg delete_category'] = "You have successfully deleted %s";
+
 
 // Errors
 $lang['finance error add_record_failed']          = "%s could not be added!";
@@ -99,7 +101,9 @@ $lang['finance error invalid_login']            = "Invalid username or password"
 $lang['finance error password_reset_failed']    = "There was a problem resetting your password. Please try again.";
 $lang['finance error register_failed']          = "Your account could not be created at this time. Please try again.";
 $lang['finance error finance_id_required']         = "A numeric user ID is required!";
-$lang['finance error finance_not_exist']           = "That user does not exist!";
+$lang['finance error finance_not_exist']           = "That record does not exist!";
 $lang['finance error record_exists']          = "The username <strong>%s</strong> already exists!";
 $lang['finance error validate_failed']          = "There was a problem validating your account. Please try again.";
 $lang['finance error too_many_login_attempts']  = "You've made too many attempts to log in too quickly. Please wait %s seconds and try again.";
+$lang['finance error delete_category']  = "Unable to delete %s";
+
