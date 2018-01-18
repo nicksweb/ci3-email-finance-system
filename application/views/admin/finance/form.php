@@ -6,7 +6,6 @@
     <?php if (isset($finance['id'])) : ?>
         <?php echo form_hidden('id', $finance['id']); ?>
     <?php endif; ?>
-    <?php echo "here" . $currentDirectory; ?>
     <div class="row">
         <?php // title ?>
         <div class="form-group col-sm-4<?php echo form_error('title') ? ' has-error' : ''; ?>">
@@ -105,7 +104,7 @@
 			// $sl_val = $this->input->post($category_id);
 
 			
-			echo form_dropdown('category_id', $category_list, (isset($finance['category'])) ? $finance['category'] : '','id="category-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Category..."');
+			echo form_dropdown('category_id', $category_list, (isset($finance['category'])) ? $finance['category'] : '','id="category-list-dropdown" class="form-control selectpicker" data-live-search="true" data-placeholder="Choose a Category..."');
 			?> 
 			 
         </div>
@@ -121,7 +120,7 @@
 			// $sl_val = $this->input->post($category_id);
 
 			
-			echo form_dropdown('vendor_id', $vendor_list, (isset($finance['vendor'])) ? $finance['vendor'] : '','id="vendor-list-dropdown" class="form-control chosen-select" data-placeholder="Choose a Vendor..."');
+			echo form_dropdown('vendor_id', $vendor_list, (isset($finance['vendor'])) ? $finance['vendor'] : '','id="vendor-list-dropdown" id="category-list-dropdown" class="form-control selectpicker" data-live-search="true" data-placeholder="Choose a Category..."');
 			?> 
 			 
         </div>
@@ -140,7 +139,7 @@
 			// $sl_val = $this->input->post($category_id);
 
 			
-			echo form_dropdown('fiscal_y', $fiscal_list, (isset($finance['fiscal_yr'])) ? $finance['fiscal_yr'] : '','id="user-list-dropdown" class="form-control chosen-select" data-placeholder="Fiscal years?..."');
+			echo form_dropdown('fiscal_y', $fiscal_list, (isset($finance['fiscal_yr'])) ? $finance['fiscal_yr'] : '','id="user-list-dropdown" id="category-list-dropdown" class="form-control selectpicker" data-live-search="true" data-placeholder="Choose a Category..."');
 			?> 
 			 
         </div>
@@ -155,7 +154,7 @@
 			// $sl_val = $this->input->post($category_id);
 
 			
-			echo form_dropdown('username_id', $users_list, (isset($finance['assigned_user'])) ? $finance['assigned_user'] : '4','id="user-list-dropdown" class="form-control chosen-select" data-placeholder="Who?..."');
+			echo form_dropdown('username_id', $users_list, (isset($finance['assigned_user'])) ? $finance['assigned_user'] : '4','id="user-list-dropdown" id="category-list-dropdown" class="form-control selectpicker" data-live-search="true" data-placeholder="Choose a Category..."');
 			?> 
 			 
         </div>
