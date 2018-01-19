@@ -21,6 +21,9 @@ class Finance extends Admin_Controller {
         // load the finance model
         $this->load->model('finance_model');
 		// $this->load->model('users_model');
+        
+        // Load the finance helpers
+        $this->load->helper('download');
 
         // set constants
         define('REFERRER', "referrer");
@@ -302,11 +305,11 @@ class Finance extends Admin_Controller {
 
             if ($saved)
             {
-                $this->session->set_flashdata('message', sprintf(lang('users msg edit_user_success'), $this->input->post('category') . " " . $this->input->post('description')));
+                $this->session->set_flashdata('message', sprintf(lang('finance msg edit_record_success'), $this->input->post('description')));
             }
             else
             {
-                $this->session->set_flashdata('error', sprintf(lang('users error edit_user_failed'), $this->input->post('category') . " " . $this->input->post('description')));
+                $this->session->set_flashdata('error', sprintf(lang('finance error edit_record_failed'), $this->input->post('category') . " " . $this->input->post('description')));
             }
 
             // return to list and display message
@@ -342,6 +345,34 @@ class Finance extends Admin_Controller {
         $data['content'] = $this->load->view('admin/finance/form', $content_data, TRUE);
         $this->load->helper('url');
 		$this->load->view($this->template, $data);
+    }
+    
+    public function efsdownload($id = NULL) 
+    {  
+
+        $finance = $this->finance_model->get_record($id); 
+        
+           if (is_file("./uploads/".$finance["filename"])) {
+                //$file = realpath ( "uploads" ) . "\\" . $finance["filename"];
+                // check file exists    
+                if (file_exists ( "./uploads/".$finance["filename"] )) {
+                    
+                    $DocTitle = ucwords($finance["title"]); 
+                    $DocTitle = str_replace(' ', '_', $DocTitle); 		
+                    $extension = end(explode(".", $finance["filename"]));
+                    $extension = "." . $extension; 
+                    $realFileName = $id.'_'.$DocTitle.$extension;
+                     // get file content
+                     $data = file_get_contents ( "./uploads/" . $finance["filename"] );
+                     //force download
+                     //$file = $realFileName . "." . $extension;
+                    force_download ( $realFileName, $data );
+                     
+                } else {
+                    // return to list
+                     redirect($this->_redirect_url);
+                }
+            }        
     }
 
 
