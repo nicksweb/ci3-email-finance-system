@@ -213,18 +213,19 @@ class Finance_model extends CI_Model {
 			$DocTitle = str_replace(' ', '_', $DocTitle); 
 								
 			$realFileName = $id.'_'.$DocTitle.$fileExt;
+			$encryptedName = md5(uniqid(mt_rand())) . $fileExt;
 			
 			if(is_file("./uploads/".$userfile.$fileExt)) {
  
-				rename($filepath.$userfile.$fileExt, $filepath.$realFileName);
+				rename($filepath.$userfile.$fileExt, $filepath.$encryptedName);
 				
 		            $sql = "UPDATE {$this->_db} 
-					SET filename='".$realFileName."'
-					WHERE id=" . $id . ";";
+					SET filename='".$encryptedName."'
+				WHERE id=" . $id . ";";
 
-            $this->db->query($sql);
+             $this->db->query($sql);
 
-			$this->email->attach("./uploads/".$realFileName);
+			$this->email->attach("./uploads/".$encryptedName);
 				
 			}
 					 
@@ -234,7 +235,7 @@ class Finance_model extends CI_Model {
 	//$this->email->from($config['SITE_EMAIL'], $config['SITE_EMAIL_FROM']);
 		$this->email->from($this->settings->efs_from, $this->settings->email_name_sender);
         
-    $this->email->subject('R'.$id.' - Title:'.$data['title'].', Filename:'.$realFileName.', Category:'.$data['category_id'].', Vendor:'.$data['vendor_id'].', Updated:' . date('Y-m-d H:i:s'));
+    $this->email->subject('R'.$id.' - Title:'.$data['title'].', Filename:'.$encryptedName.', Category:'.$data['category_id'].', Vendor:'.$data['vendor_id'].', Updated:' . date('Y-m-d H:i:s'));
 	
 	$sqlUser = "SELECT * FROM users
                 WHERE id='" . $usernameID . "'
@@ -275,7 +276,7 @@ Cost: $" . $data['costprice'] . ",
 Financial Yr: " . $fiscalDetails['categories'] . ",
 Category:" . $categoryDetails['categories'] . ",
 Vendor:" . $vendorDetails['categories'] . ",
-Filename:" . $realFileName . ",
+Filename:" . $encryptedName . ",
 Description:" . $data['description'] . ",
 Assigned User:" . $assignedUser->id .",
 '0',
@@ -334,7 +335,17 @@ Updated: " . date('Y-m-d H:i:s') . "";
                 '" . date('Y-m-d H:i:s') . "')
 			
 			*/
-			
+            
+            $sqlRecord = "SELECT * FROM {$this->_db}
+                WHERE id=" . $this->db->escape($data['id']) . "
+                    AND deleted='0'
+            ";
+	
+            $query = $this->db->query($sqlRecord);
+            $currentRecordDetails = $query->row_array();
+	
+            unlink("./uploads/".$currentRecordDetails['filename']);
+                        
 			$sql = "
                 UPDATE {$this->_db}
                 SET
@@ -353,25 +364,25 @@ Updated: " . date('Y-m-d H:i:s') . "";
 			$usernameID = $data['username_id'];
             $this->db->query($sql);
 			$id = $data['id'];
-						
-		
 		
 			$DocTitle = ucwords($data['title']); 
 			$DocTitle = str_replace(' ', '_', $DocTitle); 		
 			$realFileName = $id.'_'.$DocTitle.$fileExt;
+            $encryptedName = md5(uniqid(mt_rand())) . $fileExt;
+
 		
 		
 		if(is_file("./uploads/".$userfile.$fileExt)) {
  
-				rename($filepath.$userfile.$fileExt, $filepath.$realFileName);
+				rename($filepath.$userfile.$fileExt, $filepath.$encryptedName);
 				
 		            $sql = "UPDATE {$this->_db} 
-					SET filename='".$realFileName."'
+					SET filename='".$encryptedName."'
 					WHERE id=" . $id . ";";
 
             $this->db->query($sql);
 
-			$this->email->attach("./uploads/".$realFileName);
+			$this->email->attach("./uploads/".$encryptedName);
 				
 			}
 			
@@ -384,7 +395,7 @@ Updated: " . date('Y-m-d H:i:s') . "";
 	
 	$this->email->from($this->settings->efs_from, $this->settings->site_name);
 	
-	    $this->email->subject('R'.$id.' - Title:'.$data['title'].', Filename:'.$realFileName.', Category:'.$data['category_id'].', Vendor:'.$data['vendor_id'].', Updated:' . date('Y-m-d H:i:s'));
+	    $this->email->subject('R'.$id.' - Title:'.$data['title'].', Filename:'.$encryptedName.', Category:'.$data['category_id'].', Vendor:'.$data['vendor_id'].', Updated:' . date('Y-m-d H:i:s'));
 	
 	$sqlUser = "SELECT * FROM users
                 WHERE id='" . $usernameID . "'
@@ -433,7 +444,7 @@ Cost: $" . $data['costprice'] . ",
 Financial Yr: " . $fiscalDetails['categories'] . ",
 Category:" . $categoryDetails['categories'] . ",
 Vendor:" . $vendorDetails['categories'] . ",
-Filename:" . $realFileName . ",
+Filename:" . $encryptedName . ",
 Description:" . $data['description'] . ",
 Assigned User:" . $assignedUser->id .",
 '0',
@@ -803,7 +814,13 @@ Updated: " . date('Y-m-d H:i:s') . "";
 
         return FALSE;
     }
+    
+    public function archive_file($filename) {
+        //$file = ".\uploads\" . $filename;
+        move_uploaded_file(".\\uploads\\".$filename, '.\uploads\archive');    
+    }
 	
+    
 	function get_categories_list()
     {
 	$where_array = array('locked'=>1,'deleted'=>0);

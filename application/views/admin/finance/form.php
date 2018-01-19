@@ -69,7 +69,7 @@
  if ($delete_after_upload == 0 and is_file("./uploads/".$finance['filename']) ) { ?>
 		<div class="form-group col-sm-10">
 		
-		<strong>Open current record</strong> - <a href="<?php echo base_url('/uploads/'.$finance['filename']); ?>"><?php echo $finance['filename']; ?></a>
+		<strong>Open current record</strong> - <a href="<?php echo base_url('/admin/finance/efsdownload/'.$finance['id']); ?>">Download</a>
 		</div>
 
 <?php } } ?>
