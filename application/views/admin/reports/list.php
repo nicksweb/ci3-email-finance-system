@@ -87,7 +87,7 @@ foreach($fiscal_list as $row) { ?>
 
 foreach($category_list as $row) { ?>
 
-<option <?php if($this->input->get('category')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>"><?=$row->id?> - <?=$row->categories?></option>
+<option <?php if($this->input->get('category')==$row->id){echo "selected='selected' "; }?> value="<?=$row->id?>"><?=$row->categories?></option>
 						<?php }} ?>
 </select>
 
@@ -163,7 +163,11 @@ foreach($username_list as $row) { ?>
                         <td<?php echo (($sort == 'assigned_user') ? ' class="sorted"' : ''); ?>>
 						<?php 
 							$x = $finance['assigned_user'];
-							echo $user_list[$x];
+							if (isset($user_list[$x])==1) {
+                                echo $user_list[$x];
+                            } else {
+                                echo "No User Assigned"; 
+                            }
 						?>
                         </td>
                          <td>

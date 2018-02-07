@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 <<<<<<< HEAD
-$config['base_url'] = 'http://fire.autechnet.local/'; // SEE ENVIROMENT CONFIG FILES
+$config['base_url'] = 'https://fs.autechnet.com'; // SEE ENVIROMENT CONFIG FILES
 =======
 $config['base_url'] = ''; // SEE ENVIROMENT CONFIG FILES
 >>>>>>> refs/remotes/JasonBaier/master

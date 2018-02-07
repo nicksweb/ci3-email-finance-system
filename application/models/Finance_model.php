@@ -336,17 +336,7 @@ Updated: " . date('Y-m-d H:i:s') . "";
 			
 			*/
             
-            $sqlRecord = "SELECT * FROM {$this->_db}
-                WHERE id=" . $this->db->escape($data['id']) . "
-                    AND deleted='0'
-            ";
-	
-            $query = $this->db->query($sqlRecord);
-            $currentRecordDetails = $query->row_array();
-	
-            unlink("./uploads/".$currentRecordDetails['filename']);
-                        
-			$sql = "
+            $sql = "
                 UPDATE {$this->_db}
                 SET
                     title = " . $this->db->escape($data['title']) . ",
@@ -368,28 +358,38 @@ Updated: " . date('Y-m-d H:i:s') . "";
 			$DocTitle = ucwords($data['title']); 
 			$DocTitle = str_replace(' ', '_', $DocTitle); 		
 			$realFileName = $id.'_'.$DocTitle.$fileExt;
-            $encryptedName = md5(uniqid(mt_rand())) . $fileExt;
-
-		
+            $encryptedName = $realFileName;
 		
 		if(is_file("./uploads/".$userfile.$fileExt)) {
+            
+                $sqlRecord = "SELECT * FROM {$this->_db}
+                WHERE id=" . $this->db->escape($data['id']) . "
+                    AND deleted='0'
+            ";
+	
+            $query = $this->db->query($sqlRecord);
+            $currentRecordDetails = $query->row_array();
+            
+            $encryptedName = md5(uniqid(mt_rand())) . $fileExt;
+            
+            if ($userfile.$fileExt != $currentRecordDetails['filename']) {
+                unlink("./uploads/".$currentRecordDetails['filename']);
+            }
  
-				rename($filepath.$userfile.$fileExt, $filepath.$encryptedName);
+            rename("./uploads/".$userfile.$fileExt, "./uploads/".$encryptedName);
 				
-		            $sql = "UPDATE {$this->_db} 
-					SET filename='".$encryptedName."'
-					WHERE id=" . $id . ";";
+            $sql = "UPDATE {$this->_db} 
+            SET filename='".$encryptedName."'
+            WHERE id=" . $id . ";";
 
             $this->db->query($sql);
 
 			$this->email->attach("./uploads/".$encryptedName);
 				
 			}
-			
 		
 			//rename($filepath.$userfile.$fileExt, $filepath.$realFileName);
-			//$this->email->attach("./uploads/".$realFileName);
-
+			//$this->email->attach("./uploads/".$encryptedName);
 
 			// $this->email->attach($upload_data['full_path']);
 	
