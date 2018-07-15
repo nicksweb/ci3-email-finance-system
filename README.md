@@ -35,14 +35,15 @@
 <a name="introduction"></a>
 ## INTRODUCTION
 
-CI3 Fire Starter is a CodeIgniter3 skeleton application that includes [jQuery](https://jquery.com/) and
-[Twitter Bootstrap](http://getbootstrap.com/). It is intended to be light weight, minimalistic and not
-get in your way of building great CodeIgniter 3 applications. It is also intended for new CodeIgniter
-developers who want a simple, easy platform for learning the framework.
+Email Finance System (EFS) is a simple solution that allows receipts to be eamiled to the instance of EFS to be recorded in a database for users such as tax purposes. This project has been built from a base template using the CI3 Fire Starter as our skeleton applicatio. Read more about CI3 Fire Starter on their [GitHub](https://github.com/JasonBaier/ci3-fire-starter) here. [jQuery]
+
+EFS is like the original project, intended to be light weight, minimalistic solution. 
+
+Some of the features of Email Fiance System: 
 
 * CodeIgniter 3.x
 * Base controllers for Public, Private, Admin and API classes
-* Internationalization (translations) support
+* Internationalization (translations) support (Work in Progress)
     + Jsi18n Library to support internationalization in your Javascript files
 * The latest version of [jQuery](https://jquery.com/)
 * The latest version of [Twitter Bootstrap](http://getbootstrap.com/)
@@ -64,21 +65,18 @@ developers who want a simple, easy platform for learning the framework.
 * Sitemap
 * Basic admin tool with dashboard, user management, settings and Contact Us message list
 * Database sessions
+* Finance Record Database
+* Ability to add or manage categories for assigning to recipts and vendors. 
 
-That should cover the basic needs for kickstarting many small CodeIgniter 3 projects. While there are some
-CodeIgniter CMS applications ([see below](#conclusion)), sometimes you don't need a full CMS or you
-need a completely customizable solution. That's why I created CI3 Fire Starter. I was tired of always
-having to do the same things over and over again. So I took some best practices, included all the addons and
-functions I most commonly use, and this was the end result, which I use to start many of my smaller projects.
+I hope you find this project useful - There is currently no demo version running to date - however please contact this GitHub if you require assistance in getting this projecto running! 
 
-I hope you find it useful. **Please [fork it on Github](https://github.com/JasonBaier/ci3-fire-starter/fork "Fork It")
-and help make it better!**
+**Please [fork it on Github](https://github.com/nicksweb/ci3-email-finance-system "Fork It") and spread the word as I would love to work with other developers to make this project great! 
 
 NOTE: This documentation assumes you are already familiar with PHP and CodeIgniter. To learn more about PHP,
 visit [php.net](http://php.net/). If you need to learn more about CodeIgniter, visit the
 [CodeIgniter User Guide](http://www.codeigniter.com/userguide3/index.html).
 
-![Welcome Screen](https://s32.postimg.org/oq5fugrgl/Screen_Shot_2016_07_26_at_3_13_15_PM.png?raw=true)
+<!-- ![Welcome Screen](https://s32.postimg.org/oq5fugrgl/Screen_Shot_2016_07_26_at_3_13_15_PM.png?raw=true) --> 
 
 <a name="system-requirements"></a>
 ## SYSTEM REQUIREMENTS
@@ -94,7 +92,9 @@ for the complete list.
 <a name="installation"></a>
 ## INSTALLATION
 
-* Create a new database and import the included sql file from the /data folder
+Installation steps will be included here in a future <strong>PUSH</strong>
+
+<!-- * Create a new database and import the included sql file from the /data folder
     + default administrator username/password is **admin/admin**
 * Modify /application/config/[ENVIRONMENT]/config.php
     + line 26: set your base site URL (requirement as of CI v3.0.3) - **development is http[]()://ci3-fire-starter.dev/**
@@ -109,7 +109,7 @@ for the complete list.
 * If you switch to file sessions, set /application/sessions permission to 0600
 * Visit your new URL
 * The default welcome page includes links to the admin tool and the private user profile page
-* Make sure you log in to admin and change the administrator password!
+* Make sure you log in to admin and change the administrator password! --> 
 
 <a name="updates"></a>
 ## UPDATES
@@ -722,22 +722,14 @@ Too many to list them all, but here are some of the major changes:
 * Enabled database session handling
 * Tons of code cleanup and miscellaneous improvements
 
-#### Version 1.0.1
-10/10/2013
-
-* Removed admin template includes
-* Made login more secure using salt
-* Modified users table to handle the login change
-    + password field is now char(128)
-    + added salt field char(128)
-
 #### Version 1.0.0
-10/08/2013
+14/08/2016
+
+* Created the finance module that is part of the core of this application! 
 
 * Initial version
 
 <a name="forkit"></a>
 ## FORK IT!
 
-**Please [fork CI3 Fire Starter on Github](https://github.com/JasonBaier/ci3-fire-starter/fork "Fork It")
-and help make it better!**
+**Please [fork it on Github](https://github.com/nicksweb/ci3-email-finance-system "Fork It") and spread the word as I would love to work with other developers to make this project great! 
