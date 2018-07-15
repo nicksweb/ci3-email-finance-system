@@ -23,11 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-<<<<<<< HEAD
-$config['base_url'] = 'https://fs.autechnet.com'; // SEE ENVIROMENT CONFIG FILES
-=======
-$config['base_url'] = ''; // SEE ENVIROMENT CONFIG FILES
->>>>>>> refs/remotes/JasonBaier/master
+$config['base_url'] = 'https://fs.yourdomain.local'; // SEE ENVIROMENT CONFIG FILES
 
 /*
 |--------------------------------------------------------------------------
